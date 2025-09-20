@@ -7,12 +7,12 @@ import {
   useReverseGeocodeQuery,
 } from '../../hooks/weatherQueries';
 import type { UseQueryResult } from '@tanstack/react-query';
-import type { GeocodeData, WeatherData } from '../../api/models';
+import type { ForecastData, GeocodeData, WeatherData } from '../../api/models';
 
 type WeatherDataContextState = {
   handleRefresh: () => void;
   weatherQuery: UseQueryResult<WeatherData | null, Error>;
-  forecastQuery: UseQueryResult<WeatherData | null, Error>;
+  forecastQuery: UseQueryResult<ForecastData | null, Error>;
   locationQuery: UseQueryResult<GeocodeData[] | null, Error>;
   geolocation: ReturnType<typeof useGeolocation>;
 } | null;

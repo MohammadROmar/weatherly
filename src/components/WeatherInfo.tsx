@@ -2,6 +2,7 @@ import { RefreshCw } from 'lucide-react';
 
 import { useWeatherDataContext } from '../store/weather/hooks';
 import LoadingSkeleton from './LoadingSkeleton';
+import HourlyTemperature from './HourlyTemperature';
 import WeatherCard from './CurrentWeatherInfo';
 import { NoLocation } from './WeatherErrors';
 
@@ -21,27 +22,24 @@ function WeatherInfo({ getLocation }: WeatherInfoProps) {
 
   if (weatherQuery.error || forecastQuery.error || locationQuery.error) {
     return (
-      <NoLocation
-        title="Error"
-        description="Failed to fetch weather data. Please try again."
-        action="Retry"
-        icon={RefreshCw}
-        getLocation={getLocation}
-      />
+      <section>
+        <NoLocation
+          title="Error"
+          description="Failed to fetch weather data. Please try again."
+          action="Retry"
+          icon={RefreshCw}
+          getLocation={getLocation}
+        />
+      </section>
     );
   }
 
-  const locationData = locationQuery.data?.[0];
-
   return (
     <div className="grid gap-6">
-      <div>
-        <WeatherCard
-          weatherData={weatherQuery.data ? weatherQuery.data : undefined}
-          locationData={locationData}
-        />
+      <div className="flex flex-col gap-4 lg:flex-row">
+        <WeatherCard />
+        <HourlyTemperature />
       </div>
-      <div></div>
     </div>
   );
 }

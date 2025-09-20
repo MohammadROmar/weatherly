@@ -9,18 +9,17 @@ import { Button } from '../components/ui/button';
 type WeatherHeadingProps = { handleRefresh: () => void; isFetching: boolean };
 
 export default function HomePageContent() {
-  const { handleRefresh, geolocation, weatherQuery, forecastQuery } =
-    useWeatherDataContext();
+  const { handleRefresh, geolocation } = useWeatherDataContext();
 
   const { coordinates, error, isLoading, getLocation } = geolocation;
-  const isFetching = weatherQuery.isRefetching || forecastQuery.isRefetching;
+  const isFetching = false;
 
   if (isLoading) {
     return (
-      <>
+      <section className="space-y-6">
         <WeatherHeading isFetching={isFetching} handleRefresh={handleRefresh} />
         <LoadingSkeleton />
-      </>
+      </section>
     );
   }
 
@@ -30,18 +29,20 @@ export default function HomePageContent() {
 
   if (!coordinates) {
     return (
-      <NoLocation
-        title="Location Required"
-        description="Please enable location access to see you local weather."
-        action="Enable Location"
-        icon={MapPin}
-        getLocation={getLocation}
-      />
+      <section>
+        <NoLocation
+          title="Location Required"
+          description="Please enable location access to see you local weather."
+          action="Enable Location"
+          icon={MapPin}
+          getLocation={getLocation}
+        />
+      </section>
     );
   }
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-6">
       <WeatherHeading isFetching={isFetching} handleRefresh={handleRefresh} />
       <WeatherInfo getLocation={getLocation} />
     </section>

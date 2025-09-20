@@ -1,15 +1,8 @@
 import CurrentWeather from './CurrentWeather';
-import type { GeocodeData, WeatherData } from '../api/models';
 
-export default function WeatherCard({
-  weatherData,
-  locationData,
-}: {
-  weatherData?: WeatherData;
-  locationData?: GeocodeData;
-}) {
+export default function WeatherCard() {
   return (
-    <CurrentWeather data={weatherData} locationData={locationData}>
+    <CurrentWeather>
       <div className="space-y-6">
         <CurrentWeather.LocationInfo />
         <CurrentWeather.TemperatureDisplay />

@@ -38,18 +38,20 @@ export function NoLocation({
 
 export function LocationError({ error, getLocation }: LocationErrorProps) {
   return (
-    <Alert variant="destructive">
-      <AlertTriangle className="size-5" />
-      <AlertTitle>Location Error!</AlertTitle>
-      <AlertDescription className="space-y-4">
-        <p>{error}</p>
-        <Button variant="outline" onClick={getLocation}>
-          <span>
-            <MapPin className="mr-2 size-4" />
-          </span>
-          <span>Enable Location</span>
-        </Button>
-      </AlertDescription>
-    </Alert>
+    <section>
+      <Alert variant="destructive">
+        <AlertTriangle className="size-5" />
+        <AlertTitle>Location Error!</AlertTitle>
+        <AlertDescription className="space-y-4">
+          <p>{error}</p>
+          <Button variant="outline" onClick={getLocation}>
+            <span>
+              <MapPin className="mr-2 size-4" />
+            </span>
+            <span>Enable Location</span>
+          </Button>
+        </AlertDescription>
+      </Alert>
+    </section>
   );
 }

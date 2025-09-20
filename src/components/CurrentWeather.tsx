@@ -1,30 +1,28 @@
 import { ArrowDown, ArrowUp, Droplets, Wind } from 'lucide-react';
+import type { PropsWithChildren } from 'react';
 
 import {
   CurrentWeatherContext,
   useCurrentWeatherContext,
 } from '../store/current-weather';
-import type { GeocodeData, WeatherData } from '../api/models';
 import { Card, CardContent } from './ui/card';
 import { formatTemperature } from '../utils/formatTemperature';
+import { useWeatherDataContext } from '../store/weather/hooks';
 
-type CurrentWeatherProps = {
-  data?: WeatherData;
-  locationData?: GeocodeData;
-  children?: React.ReactNode;
-};
+export default function CurrentWeather({ children }: PropsWithChildren) {
+  const { weatherQuery, locationQuery } = useWeatherDataContext();
 
-export default function CurrentWeather({
-  data,
-  locationData,
-  children,
-}: CurrentWeatherProps) {
-  if (!data) return <p>No temperature info</p>;
+  const weatherData = weatherQuery.data;
+  const locationData = locationQuery.data?.[0];
+
+  if (!weatherData) return <p>No temperature info</p>;
 
   return (
-    <CurrentWeatherContext.Provider value={{ data, location: locationData }}>
+    <CurrentWeatherContext.Provider
+      value={{ data: weatherData, location: locationData }}
+    >
       <Card className="overflow-hidden">
-        <CardContent className="grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
+        <CardContent className="flex flex-col gap-6 p-6 md:flex-row">
           {children}
         </CardContent>
       </Card>
@@ -38,10 +36,13 @@ CurrentWeather.LocationInfo = function LocationInfo() {
 
   return (
     <div className="space-y-2">
-      <div className="flex items-end gap-1">
+      <div className="flex gap-1 max-md:flex-col md:items-end">
         <h3 className="text-xl font-semibold">{location.name}</h3>
         {location.state && (
-          <p className="text-muted-foreground">, {location.state}</p>
+          <p className="text-muted-foreground">
+            <span className="max-md:hidden">, </span>
+            {location.state}
+          </p>
         )}
       </div>
       <p className="text-muted-foreground text-sm">{location.country}</p>
@@ -54,7 +55,7 @@ CurrentWeather.TemperatureDisplay = function TemperatureDisplay() {
   const { temp, feels_like, temp_min, temp_max } = data.main;
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2">
       <p className="font-nexa text-7xl font-bold">{formatTemperature(temp)}</p>
 
       <div className="space-y-1">
@@ -84,8 +85,8 @@ CurrentWeather.Stats = function Stats() {
   const { speed } = data.wind;
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <div className="flex items-center gap-2">
+    <div className="flex flex-wrap gap-4">
+      <div className="flex flex-1 items-center gap-2">
         <Droplets className="size-4 text-blue-500" />
         <p className="flex flex-col space-y-0.5">
           <span className="text-sm font-medium">Humidity</span>
@@ -93,7 +94,7 @@ CurrentWeather.Stats = function Stats() {
         </p>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-1 items-center gap-2">
         <Wind className="size-4 text-blue-500" />
         <p className="flex flex-col space-y-0.5">
           <span className="text-sm font-medium">Wind Speed</span>

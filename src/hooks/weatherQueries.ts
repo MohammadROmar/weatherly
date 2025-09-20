@@ -14,9 +14,8 @@ export function useWeatherQuery(coordinates: Coordinates | null) {
 
 export function useForecastQuery(coordinates: Coordinates | null) {
   return useQuery({
-    queryKey: ['weater', coordinates],
-    queryFn: () =>
-      coordinates ? weatherAPI.getCurrentWeather(coordinates) : null,
+    queryKey: ['forecast', coordinates],
+    queryFn: () => (coordinates ? weatherAPI.getForecast(coordinates) : null),
     enabled: !!coordinates,
   });
 }
