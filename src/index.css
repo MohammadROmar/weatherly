@@ -3,7 +3,35 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  @font-face {
+    font-family: Nexa;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('./assets/fonts/Nexa-Heavy.ttf');
+  }
+
+  @font-face {
+    font-family: NationalPark;
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('./assets/fonts/NationalPark-Variable.ttf');
+  }
+}
+
 @theme inline {
+  --font-nexa: Nexa, sans-serif;
+  --font-national-park: NationalPark, sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -108,13 +136,4 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
 }
