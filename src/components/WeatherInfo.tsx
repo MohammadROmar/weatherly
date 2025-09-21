@@ -5,6 +5,7 @@ import LoadingSkeleton from './LoadingSkeleton';
 import HourlyTemperature from './HourlyTemperature';
 import WeatherCard from './CurrentWeatherInfo';
 import { NoLocation } from './WeatherErrors';
+import WeatherDetails from './WeatherDetails';
 
 type WeatherInfoProps = { getLocation: () => void };
 
@@ -39,6 +40,10 @@ function WeatherInfo({ getLocation }: WeatherInfoProps) {
       <div className="flex flex-col gap-4 lg:flex-row">
         <WeatherCard />
         <HourlyTemperature />
+      </div>
+
+      <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
+        <WeatherDetails />
       </div>
     </div>
   );

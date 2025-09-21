@@ -26,7 +26,7 @@ function HourlyTemperature() {
     <Card className="flex-1">
       <CardHeader>
         <CardTitle>
-          <h3>Today's Temperature</h3>
+          <h3 className="font-nexa">Today's Temperature</h3>
         </CardTitle>
       </CardHeader>
       <CardContent>{content}</CardContent>

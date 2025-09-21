@@ -37,7 +37,7 @@ CurrentWeather.LocationInfo = function LocationInfo() {
   return (
     <div className="space-y-2">
       <div className="flex gap-1 max-md:flex-col md:items-end">
-        <h3 className="text-xl font-semibold">{location.name}</h3>
+        <h3 className="font-nexa text-xl font-semibold">{location.name}</h3>
         {location.state && (
           <p className="text-muted-foreground">
             <span className="max-md:hidden">, </span>

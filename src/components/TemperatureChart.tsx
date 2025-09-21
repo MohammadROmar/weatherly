@@ -67,7 +67,7 @@ function TemperatureChart({ forecastData }: TemperatureChartProps) {
 
 function CustomTooltip({ temperature, feelsLike }: CustomTooltipProps) {
   return (
-    <div className="bg-background grid grid-cols-2 gap-2 rounded-lg border p-2 shadow-sm">
+    <div className="bg-background grid grid-cols-2 gap-4 rounded-lg border p-2 shadow-sm">
       <p className="flex flex-col">
         <span className="text-muted-foreground text-[0.7rem] uppercase">
           Temperature{' '}
@@ -79,7 +79,7 @@ function CustomTooltip({ temperature, feelsLike }: CustomTooltipProps) {
         <span className="text-muted-foreground text-[0.7rem] uppercase">
           Feels Like{' '}
         </span>
-        <span className="font-bold">{feelsLike}°</span>
+        <span className="font-nexa font-bold">{feelsLike}°</span>
       </p>
     </div>
   );
