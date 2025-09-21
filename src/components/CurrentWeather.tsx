@@ -1,13 +1,14 @@
-import { ArrowDown, ArrowUp, Droplets, Wind } from 'lucide-react';
 import type { PropsWithChildren } from 'react';
 
 import {
   CurrentWeatherContext,
   useCurrentWeatherContext,
 } from '../store/current-weather';
+import { useWeatherDataContext } from '../store/weather/hooks';
+import Temperature from './Temperature';
+import HumidityNWindSpeed from './HumidityNWindSpeed';
 import { Card, CardContent } from './ui/card';
 import { formatTemperature } from '../utils/formatTemperature';
-import { useWeatherDataContext } from '../store/weather/hooks';
 
 export default function CurrentWeather({ children }: PropsWithChildren) {
   const { weatherQuery, locationQuery } = useWeatherDataContext();
@@ -63,17 +64,11 @@ CurrentWeather.TemperatureDisplay = function TemperatureDisplay() {
           Feels like {formatTemperature(feels_like)}
         </p>
 
-        <div className="flex items-center gap-2 text-sm font-medium">
-          <p className="flex items-center gap-1 text-blue-500">
-            <ArrowDown className="size-3" />
-            <span>{formatTemperature(temp_min)}</span>
-          </p>
-
-          <p className="flex items-center gap-1 text-red-500">
-            <ArrowUp className="size-3" />
-            <span>{formatTemperature(temp_max)}</span>
-          </p>
-        </div>
+        <Temperature
+          min={temp_min}
+          max={temp_max}
+          className="gap-2 text-sm font-medium"
+        />
       </div>
     </div>
   );
@@ -84,25 +79,7 @@ CurrentWeather.Stats = function Stats() {
   const { humidity } = data.main;
   const { speed } = data.wind;
 
-  return (
-    <div className="flex flex-wrap gap-4">
-      <div className="flex flex-1 items-center gap-2">
-        <Droplets className="size-4 text-blue-500" />
-        <p className="flex flex-col space-y-0.5">
-          <span className="text-sm font-medium">Humidity</span>
-          <span className="text-muted-foreground text-sm">{humidity}%</span>
-        </p>
-      </div>
-
-      <div className="flex flex-1 items-center gap-2">
-        <Wind className="size-4 text-blue-500" />
-        <p className="flex flex-col space-y-0.5">
-          <span className="text-sm font-medium">Wind Speed</span>
-          <span className="text-muted-foreground text-sm">{speed} m/s</span>
-        </p>
-      </div>
-    </div>
-  );
+  return <HumidityNWindSpeed humidity={humidity} speed={speed} />;
 };
 
 CurrentWeather.Icon = function Icon() {

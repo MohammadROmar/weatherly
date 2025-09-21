@@ -83,3 +83,12 @@ export interface GeocodeData {
   country: string;
   state?: string;
 }
+
+export type DailyForecast = {
+  temp_min: number;
+  temp_max: number;
+  humidity: number;
+  wind: number;
+  date: number;
+  weather: WeatherCondition;
+};

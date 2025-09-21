@@ -3,9 +3,10 @@ import { RefreshCw } from 'lucide-react';
 import { useWeatherDataContext } from '../store/weather/hooks';
 import LoadingSkeleton from './LoadingSkeleton';
 import HourlyTemperature from './HourlyTemperature';
+import WeatherDetails from './WeatherDetails';
+import WeatherForecast from './WeatherForecast';
 import WeatherCard from './CurrentWeatherInfo';
 import { NoLocation } from './WeatherErrors';
-import WeatherDetails from './WeatherDetails';
 
 type WeatherInfoProps = { getLocation: () => void };
 
@@ -44,6 +45,7 @@ function WeatherInfo({ getLocation }: WeatherInfoProps) {
 
       <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
         <WeatherDetails />
+        <WeatherForecast />
       </div>
     </div>
   );
