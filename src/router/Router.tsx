@@ -1,9 +1,11 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootLayout from '../components/RootLayout';
 import ErrorPage from '../pages/Error';
 import HomePage from '../pages/Home';
-import CityPage from '../pages/City';
+
+const CityPage = lazy(() => import('../pages/City'));
 
 export const router = createBrowserRouter([
   {
@@ -11,8 +13,15 @@ export const router = createBrowserRouter([
     Component: RootLayout,
     ErrorBoundary: ErrorPage,
     children: [
-      { index: true, Component: HomePage },
-      { path: '/city/:cityName', Component: CityPage },
+      { index: true, element: <HomePage /> },
+      {
+        path: '/city/:cityName',
+        element: (
+          <Suspense>
+            <CityPage />
+          </Suspense>
+        ),
+      },
     ],
   },
 ]);

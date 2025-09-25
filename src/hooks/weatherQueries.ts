@@ -28,3 +28,11 @@ export function useReverseGeocodeQuery(coordinates: Coordinates | null) {
     enabled: !!coordinates,
   });
 }
+
+export function useSearchLocation(query: string) {
+  return useQuery({
+    queryKey: ['search-location', query],
+    queryFn: () => weatherAPI.searchLocation(query),
+    enabled: query.length >= 3,
+  });
+}
