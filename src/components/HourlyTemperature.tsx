@@ -1,7 +1,7 @@
 import { useWeatherDataContext } from '../store/weather/hooks';
 import TemperatureChart from './TemperatureChart';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { formateOpenWeatherMap } from '../utils/formateOpenWeatherMapDate';
+import { formatOpenWeatherMap } from '../utils/formatOpenWeatherMapDate';
 
 function HourlyTemperature() {
   const { forecastQuery } = useWeatherDataContext();
@@ -10,7 +10,7 @@ function HourlyTemperature() {
 
   if (forecastQuery.data) {
     const forecastData = forecastQuery.data.list.slice(0, 8).map((item) => ({
-      time: formateOpenWeatherMap(item.dt),
+      time: formatOpenWeatherMap(item.dt),
       temperature: Math.round(item.main.temp),
       feels_like: Math.round(item.main.feels_like),
     }));

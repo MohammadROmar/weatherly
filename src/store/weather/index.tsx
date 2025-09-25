@@ -7,7 +7,12 @@ import {
   useReverseGeocodeQuery,
 } from '../../hooks/weatherQueries';
 import type { UseQueryResult } from '@tanstack/react-query';
-import type { ForecastData, GeocodeData, WeatherData } from '../../api/models';
+import type {
+  Coordinates,
+  ForecastData,
+  GeocodeData,
+  WeatherData,
+} from '../../api/models';
 
 type WeatherDataContextState = {
   handleRefresh: () => void;
@@ -19,9 +24,16 @@ type WeatherDataContextState = {
 
 export const WeatherDataContext = createContext<WeatherDataContextState>(null);
 
-export function WeatherDataContextProvider({ children }: PropsWithChildren) {
+type WeatherDataContextProviderProps = {
+  coordinates: Coordinates | null;
+} & PropsWithChildren;
+
+export function WeatherDataContextProvider({
+  coordinates,
+  children,
+}: WeatherDataContextProviderProps) {
   const geolocation = useGeolocation();
-  const { coordinates, getLocation } = geolocation;
+  const { getLocation } = geolocation;
 
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);

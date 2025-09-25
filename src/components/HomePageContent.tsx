@@ -1,12 +1,10 @@
-import { MapPin, RefreshCw } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 import { useWeatherDataContext } from '../store/weather/hooks';
 import LoadingSkeleton from '../components/LoadingSkeleton';
+import WeatherHeading from './WeatherHeading';
 import WeatherInfo from '../components/WeatherInfo';
 import { NoLocation, LocationError } from './WeatherErrors';
-import { Button } from '../components/ui/button';
-
-type WeatherHeadingProps = { handleRefresh: () => void; isFetching: boolean };
 
 export default function HomePageContent() {
   const { handleRefresh, geolocation } = useWeatherDataContext();
@@ -17,7 +15,11 @@ export default function HomePageContent() {
   if (isLoading) {
     return (
       <section className="space-y-6">
-        <WeatherHeading isFetching={isFetching} handleRefresh={handleRefresh} />
+        <WeatherHeading
+          title="My Location"
+          isFetching={isFetching}
+          handleRefresh={handleRefresh}
+        />
         <LoadingSkeleton />
       </section>
     );
@@ -43,25 +45,12 @@ export default function HomePageContent() {
 
   return (
     <section className="space-y-6">
-      <WeatherHeading isFetching={isFetching} handleRefresh={handleRefresh} />
+      <WeatherHeading
+        title="My Location"
+        isFetching={isFetching}
+        handleRefresh={handleRefresh}
+      />
       <WeatherInfo getLocation={getLocation} />
     </section>
-  );
-}
-
-function WeatherHeading({ handleRefresh, isFetching }: WeatherHeadingProps) {
-  return (
-    <div className="flex items-center justify-between">
-      <h2 className="font-nexa text-left text-xl">My Location</h2>
-      <Button
-        aria-label="Refresh"
-        size="icon"
-        variant="outline"
-        onClick={handleRefresh}
-        disabled={isFetching}
-      >
-        <RefreshCw className={`size-4 ${isFetching ? 'animate-spin' : ''}`} />
-      </Button>
-    </div>
   );
 }

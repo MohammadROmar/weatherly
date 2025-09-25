@@ -1,4 +1,4 @@
-export function formateOpenWeatherMap(unixTime: number) {
+export function formatOpenWeatherMap(unixTime: number) {
   const date = new Date(unixTime * 1000);
 
   let hours = date.getHours();

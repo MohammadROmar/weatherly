@@ -1,6 +1,6 @@
 import { Compass, Gauge, Sunrise, Sunset } from 'lucide-react';
 
-import { formateOpenWeatherMap } from './formateOpenWeatherMapDate';
+import { formatOpenWeatherMap } from './formatOpenWeatherMapDate';
 import { getWindDirection } from './getWindDirection';
 import type { WeatherData } from '../api/models';
 
@@ -10,13 +10,13 @@ export function getWeatherDetailsData(weatherData: WeatherData) {
   const details = [
     {
       title: 'Sunrise',
-      value: formateOpenWeatherMap(sys.sunrise),
+      value: formatOpenWeatherMap(sys.sunrise),
       icon: Sunrise,
       color: 'text-orange-500',
     },
     {
       title: 'Sunset',
-      value: formateOpenWeatherMap(sys.sunset),
+      value: formatOpenWeatherMap(sys.sunset),
       icon: Sunset,
       color: 'text-blue-500',
     },
