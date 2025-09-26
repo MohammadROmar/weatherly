@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { RefreshCw } from 'lucide-react';
 
 import { useWeatherDataContext } from '../store/weather/hooks';
+import FavoriteButton from './FavoriteButton';
 import LoadingSkeleton from './LoadingSkeleton';
 import WeatherHeading from './WeatherHeading';
 import WeatherInfo from './WeatherInfo';
@@ -40,11 +41,22 @@ export default function CityPageContent() {
 
   return (
     <section className="space-y-6">
-      <WeatherHeading
-        title={`${params.cityName}, ${weatherQuery.data?.sys.country}`}
-        isFetching={isFetching}
-        handleRefresh={handleRefresh}
-      />
+      <div className="flex items-center gap-2">
+        <div className="flex-1">
+          <WeatherHeading
+            title={`${params.cityName}, ${weatherQuery.data?.sys.country}`}
+            isFetching={isFetching}
+          />
+        </div>
+
+        <FavoriteButton
+          data={
+            weatherQuery.data
+              ? { ...weatherQuery.data, name: params.cityName }
+              : null
+          }
+        />
+      </div>
       <WeatherInfo getLocation={handleRefresh} />
     </section>
   );

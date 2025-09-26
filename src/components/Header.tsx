@@ -17,12 +17,12 @@ export default function Header() {
           <img
             src={logoImg}
             alt="Weatherly logo - featuring a sun and cloud."
-            className="size-9"
+            className="size-6 drop-shadow-md sm:size-7"
           />
-          <h1 className="font-nexa text-2xl font-bold">Weatherly</h1>
+          <h1 className="font-nexa text-xl font-bold sm:text-2xl">Weatherly</h1>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <SeachCity />
 
           <button
@@ -32,9 +32,9 @@ export default function Header() {
             className={`cursor-pointer transition-transform duration-500 ${isDark ? 'rotate-180' : 'rotate-0'}`}
           >
             {isDark ? (
-              <Sun className="size-6 text-yellow-500" />
+              <Sun className="size-5 text-yellow-500 sm:size-6" />
             ) : (
-              <Moon className="size-6 text-slate-500" />
+              <Moon className="size-5 text-slate-500 sm:size-6" />
             )}
           </button>
         </div>

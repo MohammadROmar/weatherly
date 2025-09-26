@@ -4,27 +4,29 @@ import { Button } from './ui/button';
 
 type WeatherHeadingProps = {
   title: string;
-  handleRefresh: () => void;
   isFetching: boolean;
+  handleRefresh?: () => void;
 };
 
 function WeatherHeading({
   title,
-  handleRefresh,
   isFetching,
+  handleRefresh,
 }: WeatherHeadingProps) {
   return (
     <div className="flex items-center justify-between">
-      <h2 className="font-nexa text-left text-2xl">{title}</h2>
-      <Button
-        aria-label="Refresh"
-        size="icon"
-        variant="outline"
-        onClick={handleRefresh}
-        disabled={isFetching}
-      >
-        <RefreshCw className={`size-4 ${isFetching ? 'animate-spin' : ''}`} />
-      </Button>
+      <h2 className="font-nexa text-left text-xl">{title}</h2>
+      {handleRefresh && (
+        <Button
+          aria-label="Refresh"
+          size="icon"
+          variant="outline"
+          onClick={handleRefresh}
+          disabled={isFetching}
+        >
+          <RefreshCw className={`size-4 ${isFetching ? 'animate-spin' : ''}`} />
+        </Button>
+      )}
     </div>
   );
 }
