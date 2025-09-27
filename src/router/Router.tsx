@@ -2,10 +2,11 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import RootLayout from '../components/RootLayout';
-import ErrorPage from '../pages/Error';
 import HomePage from '../pages/Home';
+import ErrorPage from '../pages/Error';
 
 const CityPage = lazy(() => import('../pages/City'));
+const AboutPage = lazy(() => import('../pages/About'));
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
     ErrorBoundary: ErrorPage,
     children: [
       { index: true, element: <HomePage /> },
+      { path: '/about', element: <AboutPage /> },
       {
         path: '/city/:cityName',
         element: (

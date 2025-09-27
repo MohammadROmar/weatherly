@@ -40,24 +40,28 @@ export default function CityPageContent() {
   const isFetching = weatherQuery.isRefetching || forecastQuery.isRefetching;
 
   return (
-    <section className="space-y-6">
-      <div className="flex items-center gap-2">
-        <div className="flex-1">
-          <WeatherHeading
-            title={`${params.cityName}, ${weatherQuery.data?.sys.country}`}
-            isFetching={isFetching}
+    <>
+      <title>{`${params.cityName} - Weatherly`}</title>
+
+      <section className="space-y-6">
+        <div className="flex items-center gap-2">
+          <div className="flex-1">
+            <WeatherHeading
+              title={`${params.cityName}, ${weatherQuery.data?.sys.country}`}
+              isFetching={isFetching}
+            />
+          </div>
+
+          <FavoriteButton
+            data={
+              weatherQuery.data
+                ? { ...weatherQuery.data, name: params.cityName }
+                : null
+            }
           />
         </div>
-
-        <FavoriteButton
-          data={
-            weatherQuery.data
-              ? { ...weatherQuery.data, name: params.cityName }
-              : null
-          }
-        />
-      </div>
-      <WeatherInfo getLocation={handleRefresh} />
-    </section>
+        <WeatherInfo getLocation={handleRefresh} />
+      </section>
+    </>
   );
 }
