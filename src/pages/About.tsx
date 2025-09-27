@@ -1,22 +1,17 @@
 import { Sparkles, CircleQuestionMark, Eye } from 'lucide-react';
-import type { ElementType, PropsWithChildren } from 'react';
 
+import Section from '../components/Section';
+import CustomCard from '../components/CustomCard';
 import { keyFeatures } from '../data/keyFeatures';
-
-type AboutSectionProps = {
-  title: string;
-  icon?: ElementType;
-  className?: string;
-  titleClassName?: string;
-} & PropsWithChildren;
 
 export default function About() {
   return (
     <>
       <title>About Weatherly</title>
 
-      <AboutSection
+      <Section
         title="About Weatherly"
+        className="!mt-0"
         titleClassName="!text-2xl md:!text-3xl"
       >
         <p className="text-muted-foreground">
@@ -26,30 +21,17 @@ export default function About() {
           forecasts, or keep your favorite cities at hand, Weatherly delivers
           all the essentials in one place.
         </p>
-      </AboutSection>
+      </Section>
 
-      <AboutSection title="Key Features" icon={Sparkles}>
+      <Section title="Key Features" icon={Sparkles}>
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {keyFeatures.map((feature) => (
-            <li
-              key={feature.title}
-              className="flex size-full gap-2 md:flex-col md:items-center md:gap-1"
-            >
-              <div className="bg-card border-border size-fit rounded-xl border p-2">
-                <feature.icon className="size-5" />
-              </div>
-              <div>
-                <h3 className="text-lg">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm">
-                  {feature.description}
-                </p>
-              </div>
-            </li>
+            <CustomCard key={feature.title} {...feature} />
           ))}
         </ul>
-      </AboutSection>
+      </Section>
 
-      <AboutSection title="Why Weatherly?" icon={CircleQuestionMark}>
+      <Section title="Why Weatherly?" icon={CircleQuestionMark}>
         <p className="text-muted-foreground">
           Weatherly was created to provide a user-friendly and visually
           appealing way to access weather information. We believe that staying
@@ -63,9 +45,9 @@ export default function About() {
           forecast for your commute, planning a weekend getaway, or just curious
           about the weather in a different city, Weatherly has you covered.
         </p>
-      </AboutSection>
+      </Section>
 
-      <AboutSection title="Vision" icon={Eye}>
+      <Section title="Vision" icon={Eye}>
         <p className="text-muted-foreground">
           Our vision for Weatherly is to create a professional, reliable, and
           user-centric weather dashboard that empowers users with accurate and
@@ -73,34 +55,7 @@ export default function About() {
           innovation, ensuring that Weatherly remains the premier choice for
           weather enthusiasts and everyday users alike.
         </p>
-      </AboutSection>
+      </Section>
     </>
-  );
-}
-
-function AboutSection({
-  title,
-  icon: Icon,
-  className = '',
-  titleClassName = '',
-  children,
-}: AboutSectionProps) {
-  return (
-    <section
-      className={`mt-6 space-y-2 px-4 md:mx-auto md:max-w-4xl md:text-center ${className}`}
-    >
-      <h2
-        className={`font-nexa flex items-center gap-2 text-xl md:justify-center ${titleClassName}`}
-      >
-        {Icon && (
-          <span>
-            <Icon />
-          </span>
-        )}
-        <span>{title}</span>
-      </h2>
-
-      {children}
-    </section>
   );
 }

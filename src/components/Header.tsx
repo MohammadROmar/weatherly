@@ -11,8 +11,8 @@ export default function Header() {
   const isDark = theme === 'dark';
 
   return (
-    <header className="bg-background/90 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b px-4 py-2 backdrop-blur-sm">
-      <div className="container m-auto flex items-center justify-between px-4">
+    <header className="bg-background/90 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
+      <div className="container m-auto flex items-center justify-between px-4 py-2">
         <Link to="/" className="flex items-center gap-2">
           <img
             src={logoImg}

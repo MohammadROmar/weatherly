@@ -9,7 +9,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Header />
-      <main className="bg-background container mx-auto min-h-screen px-4 py-8">
+      <main className="bg-background container mx-auto min-h-screen px-4 py-6">
         {children}
       </main>
       <Footer />

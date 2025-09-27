@@ -1,10 +1,11 @@
-import { Home, Info } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+import { navigationLinks } from '../data/navigationLinks';
 
 export default function Footer() {
   return (
-    <footer className="supports-[backdrop-filter]:bg-background border-t py-6 backdrop-blur-sm">
-      <div className="container mx-auto px-4">
+    <footer className="supports-[backdrop-filter]:bg-background border-t px-4 py-6 backdrop-blur-sm">
+      <div className="container mx-auto">
         <Link to="/" className="flex w-fit items-center gap-2">
           <h2 className="font-nexa text-xl font-bold sm:text-2xl">Weatherly</h2>
         </Link>
@@ -14,28 +15,19 @@ export default function Footer() {
         </p>
 
         <ul className="mt-4 flex flex-wrap gap-4">
-          <li>
-            <Link
-              to="/"
-              className="text-muted-foreground flex items-center gap-1 text-sm transition-colors duration-300 hover:text-blue-500"
-            >
-              <span>
-                <Home className="size-4" />
-              </span>
-              <span>Home</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="text-muted-foreground flex items-center gap-1 text-sm transition-colors duration-300 hover:text-blue-500"
-            >
-              <span>
-                <Info className="size-4" />
-              </span>
-              <span>About</span>
-            </Link>
-          </li>
+          {navigationLinks.map((link) => (
+            <li key={link.title}>
+              <Link
+                to={link.to}
+                className="text-muted-foreground flex items-center gap-1 text-sm transition-colors duration-300 hover:text-blue-500"
+              >
+                <span>
+                  <link.icon className="size-4" />
+                </span>
+                <span>{link.title}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <p className="text-muted-foreground mt-2 text-center text-xs">

@@ -1,4 +1,4 @@
-# 🌦 Weatherly
+# 🌥️ Weatherly
 
 **Weatherly** is a modern weather dashboard built with **React.js** that lets you check real-time and forecasted weather data.  
 Users can allow location access to instantly get their local weather or search for any city worldwide.
@@ -58,3 +58,7 @@ You will need an API key to make requests – create a .env file and add your ke
 ```bash
 VITE_OPENWEATHER_API_KEY=your_api_key_here
 ```
+
+## 🌐 Live Demo
+
+Check out the live version of Weatherly here: 🔗 [weatherly-site.vercel.app](https://weatherly-site.vercel.app)
