@@ -32,6 +32,10 @@ export function ThemeProvider({
         : 'light';
 
       root.classList.add(systemTheme);
+
+      localStorage.setItem(storageKey, systemTheme);
+      setTheme(systemTheme);
+
       return;
     }
 
