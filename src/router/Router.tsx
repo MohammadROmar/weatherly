@@ -16,8 +16,22 @@ export const router = createBrowserRouter([
     ErrorBoundary: ErrorPage,
     children: [
       { index: true, element: <HomePage /> },
-      { path: '/about', element: <AboutPage /> },
-      { path: '/privacy-policy', element: <PrivacyPolicyPage /> },
+      {
+        path: '/about',
+        element: (
+          <Suspense>
+            <AboutPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/privacy-policy',
+        element: (
+          <Suspense>
+            <PrivacyPolicyPage />
+          </Suspense>
+        ),
+      },
       {
         path: '/city/:cityName',
         element: (
